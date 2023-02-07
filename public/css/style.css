@@ -1,0 +1,50 @@
+.image {
+    width: 8%;
+    height: auto;
+    margin: 40px;
+}
+
+.parrafo {
+    margin: 30px;
+}
+
+.btn-ya-llegue {
+    display: inline;
+    margin: 10px;
+}
+
+.btn-ya-fui {
+    display: inline;
+    margin: 10px;
+}
+
+.alineacion {
+    display: inline;
+}
+
+.contenedor {
+    margin: 10px;
+    padding: 10px;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+a:hover {
+    text-decoration: none;
+    color: inherit;
+}
+
+button {
+    margin: 15px 0px;
+}
+
+.imageR {
+    width: 25px;
+}
+
+.itemR {
+    text-align: center;
+}
