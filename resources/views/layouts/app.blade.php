@@ -20,7 +20,7 @@
         <!-- Styles -->
         <link rel="stylesheet" href="{{ asset('css/style.css') }}">
         <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
-        <link rel="stylesheet" href="{{ asset('css/login.css') }}">
+        @yield('styles')
         
         @livewireStyles
         {{-- <link href="https://cdn.jsdelivr.net/npm/tailwindcss@latest/dist/tailwind.min.css" rel="stylesheet"> --}}
