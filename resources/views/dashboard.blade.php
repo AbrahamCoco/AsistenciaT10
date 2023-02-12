@@ -21,6 +21,7 @@
                     <div class="parrafo">
                         <p>Bienvenido a <strong>{{ config('app.name') }}</strong> este es un sistema para tomar tu asistencia y contabilizar las horas realizadas en esta empresa.</p>
                         <p>Esta es la prueba de que son ramas diferentes master y devt10</p>
+                        <p>Esta es la rama master</p>
                         <div class="mt-4">
                             <div class="row g-3">
                                 <div class="col-6">
