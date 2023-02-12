@@ -27,7 +27,7 @@ Route::middleware([
 ])->group(function () {
 
     // Rutas para el registro   
-    Route::get('/otraPagina/create', [RegistroController::class, 'create'])->name('otraPagina');
+    Route::get('/Registro/create', [RegistroController::class, 'create'])->name('Registro');
     Route::post('/Registro', [RegistroController::class, 'store'])->name('Registro.store');
     Route::get('/PrestadoresServicio', [RegistroController::class, 'show'])->name('PrestadoresServicio');
     Route::get('/Prestadores/{registro}/edit', [RegistroController::class, 'edit'])->name('Registro.edit');

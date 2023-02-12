@@ -4,6 +4,10 @@
     margin: 40px;
 }
 
+.logo-image {
+    height: 50px;
+}
+
 .parrafo {
     margin: 30px;
 }
@@ -47,4 +51,5 @@ button {
 
 .itemR {
     text-align: center;
+    color: #c4c3ca;
 }

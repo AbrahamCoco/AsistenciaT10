@@ -6,7 +6,7 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}">
-                        <x-jet-application-mark class="block h-9 w-auto" />
+                        <x-jet-application-mark/>
                     </a>
                 </div>
 
@@ -15,7 +15,7 @@
                     <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         {{ __('Inicio') }}
                     </x-jet-nav-link>
-                    <x-jet-nav-link href="{{ route('otraPagina') }}" :active="request()->routeIs('Registro')">
+                    <x-jet-nav-link href="{{ route('Registro') }}" :active="request()->routeIs('Registro')">
                         {{ __('Registro') }}
                     </x-jet-nav-link>
                     <x-jet-nav-link href="{{ route('PrestadoresServicio') }}" :active="request()->routeIs('PrestadoresServicio')">
@@ -146,8 +146,11 @@
             <x-jet-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                 {{ __('Inicio') }}
             </x-jet-responsive-nav-link>
-            <x-jet-responsive-nav-link href="{{ route('otraPagina') }}" :active="request()->routeIs('otraPagina')">
-                {{ __('Otra Pagina') }}
+            <x-jet-responsive-nav-link href="{{ route('Registro') }}" :active="request()->routeIs('Registro')">
+                {{ __('Registro') }}
+            </x-jet-responsive-nav-link>
+            <x-jet-responsive-nav-link href="{{ route('PrestadoresServicio') }}" :active="request()->routeIs('PrestadoresServicio')">
+                {{ __('Servicio') }}
             </x-jet-responsive-nav-link>
         </div>
 
