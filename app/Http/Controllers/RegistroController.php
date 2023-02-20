@@ -16,20 +16,33 @@ class RegistroController extends Controller
 
     public function store(Request $request)
     {
-        $registro = new User();
+        User::create([
+            'name' => $request->name,
+            'fom' => $request->fom,
+            'telefono' => $request->telefono,
+            'tipo' => $request->tipo,
+            'fechaAgenda' => $request->fechaAgenda,
+            'ce' => $request->ce,
+            'curp' => $request->curp,
+            'direccion' => $request->direccion,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ])->assignRole('PrestadorDeServicio');
 
-        $registro->name = $request->name;
-        $registro->fom = $request->fom;
-        $registro->telefono = $request->telefono;
-        $registro->tipo = $request->tipo;
-        $registro->fechaAgenda = $request->fechaAgenda;
-        $registro->ce = $request->ce;
-        $registro->curp = $request->curp;
-        $registro->direccion = $request->direccion;
-        $registro->email = $request->email;
-        $registro->password = Hash::make($request->password);
+        // $registro = new User();
 
-        $registro->save();
+        // $registro->name = $request->name;
+        // $registro->fom = $request->fom;
+        // $registro->telefono = $request->telefono;
+        // $registro->tipo = $request->tipo;
+        // $registro->fechaAgenda = $request->fechaAgenda;
+        // $registro->ce = $request->ce;
+        // $registro->curp = $request->curp;
+        // $registro->direccion = $request->direccion;
+        // $registro->email = $request->email;
+        // $registro->password = Hash::make($request->password);
+
+        // $registro->save();
 
         return redirect()->route('PrestadoresServicio')->with('message', 'Usuario agregado con exito.');
     }
