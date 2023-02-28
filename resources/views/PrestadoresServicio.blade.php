@@ -16,6 +16,7 @@
                         <table>
                             <thead class="text-center">
                                 <th>Nombre completo</th>
+                                <th>Correo electronico</th>
                                 <th>Telefono de contacto</th>
                                 <th>Tipo de usuario</th>
                                 <th>Modificar</th>
@@ -27,6 +28,7 @@
                                 @foreach ($registro as $regis)
                                     <tr>
                                         <td class="itemR">{{$regis->name}}</td>
+                                        <td class="itemR">{{$regis->email}}</td>
                                         <td class="itemR">{{$regis->telefono}}</td>
                                         <td class="itemR">{{$regis->tipo}}</td>
                                         <td class="itemR">
