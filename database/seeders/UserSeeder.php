@@ -20,13 +20,26 @@ class UserSeeder extends Seeder
             'name' => 'Abraham Cocoletzi Zempoalteca',
             'fom' => '20192271',
             'telefono' => '5567633329',
-            'tipo' => 'Servicio social',
-            'fechaAgenda' => '2023-02-20',
+            'tipo' => 'Servicio Social',
+            'fechaAgenda' => '2022-11-14',
             'ce' => 'CCZMAB95031629H700',
             'curp' => 'COZA950316HTLCMB02',
             'direccion' => 'Calle 23 de marzo #84, Secc 6ta, Contla de Juan Cuamatzi, Tlaxcala',
-            'email' => '20192271@uatx.mx',
+            'email' => 'abrahamterminus10@gmail.com',
             'password' => Hash::make('zac950316'),
+        ])->assignRole('Administrador');
+
+        User::create([
+            'name' => 'Elizabeth Zarate Sanchez',
+            'fom' => '6585178',
+            'telefono' => '2461036500',
+            'tipo' => 'Jovenes Construyendo el Futuro',
+            'fechaAgenda' => '2019-09-09',
+            'ce' => 'ZRSNEL98101629M200',
+            'curp' => 'ZASE981016MTLRNL05',
+            'direccion' => 'C. Progreso Norte #54 90800, Chiautempan, Tlax',
+            'email' => 'eliterminus10@gmail.com',
+            'password' => Hash::make('Estandar_0909*'),
         ])->assignRole('Administrador');
     }
 }
