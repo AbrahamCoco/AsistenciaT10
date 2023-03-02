@@ -85,14 +85,19 @@
         <img class="imgHeader" src="{{ public_path("images/LogoTerminus.png") }}" alt="">
     </div>
 
-    <p><strong>Reporte de prestador de: {{$asistencia->first()->user->tipo}} </strong></p>
+    @php
+        $primeraAsistencia = $asistencia->first();
+        $ultimaAsistencia = $asistencia->last();
+    @endphp
+
+    <p><strong>Reporte de prestador de: {{$primeraAsistencia->user->tipo}} </strong></p>
     <p>Fecha de consulta.</p>
     <p>
-        Desde: {{ \Carbon\Carbon::parse($asistencia->first()->hora_inicio)->format('d-m-Y') }}
-        Hasta: {{ \Carbon\Carbon::parse($asistencia->last()->hora_inicio)->format('d-m-Y') }}
+        Desde: {{ \Carbon\Carbon::parse($primeraAsistencia->hora_inicio)->format('d-m-Y') }}
+        Hasta: {{ \Carbon\Carbon::parse($ultimaAsistencia->hora_inicio)->format('d-m-Y') }}
     </p>
     <p></p>
-    <p>Nombre completo del prestador: <strong>{{$asistencia->first()->user->name }}</strong></p>
+    <p>Nombre completo del prestador: <strong>{{$primeraAsistencia->user->name }}</strong></p>
     <table style="border">
         <thead>
             <th>ID</th>
@@ -103,42 +108,50 @@
         </thead>
         <tbody>
             @php
-                $contador = 1;
                 $totalMinutos = 0;
             @endphp
-            @foreach ( $asistencia as $asis )
-                <tr>
-                    <td> {{ $contador }} </td>
-                    <td> {{ DateTime::createFromFormat('Y-m-d H:i:s', $asis->hora_inicio)->format('d-m-Y') }} </td>
-                    <td> {{ substr($asis->hora_inicio, 11, 5) }} hrs</td>
-                    <td> {{ substr($asis->hora_fin, 11, 5) }} hrs</td>
-                    <td> 
-                        @if($asis->hora_inicio && $asis->hora_fin)
-                            {{ floor(Carbon\Carbon::parse($asis->hora_inicio)->diffInMinutes(Carbon\Carbon::parse($asis->hora_fin))/60) }} horas y {{ Carbon\Carbon::parse($asis->hora_inicio)->diffInMinutes(Carbon\Carbon::parse($asis->hora_fin)) % 60 }} minutos
-                            @php
-                                $totalMinutos += Carbon\Carbon::parse($asis->hora_inicio)->diffInMinutes(Carbon\Carbon::parse($asis->hora_fin));
-                            @endphp
-                        @endif
-                    </td>
-                </tr>
+            @foreach ($asistencia as $i => $asis)
                 @php
-                    $contador++;
+                    $hora_inicio = $asis->hora_inicio ?? '';
+                    $hora_fin = $asis->hora_fin ?? '';
+                    $fecha = '';
+                    $horas = '';
+                    if ($hora_inicio && $hora_fin) {
+                        $diff = date_diff(date_create($hora_inicio), date_create($hora_fin));
+                        $horas = sprintf('%d horas y %d minutos', $diff->h, $diff->i);
+                        $totalMinutos += $diff->h * 60 + $diff->i;
+                        $fecha = DateTime::createFromFormat('Y-m-d H:i:s', $hora_inicio)->format('d-m-Y');
+                    }
                 @endphp
+                <tr>
+                    <td>{{ $i + 1 }}</td>
+                    <td>{{ $fecha }}</td>
+                    <td>{{ substr($hora_inicio, 11, 5) }} hrs</td>
+                    <td>{{ substr($hora_fin, 11, 5) }} hrs</td>
+                    <td>{{ $horas }}</td>
+                </tr>
             @endforeach
         </tbody>
     </table>
     @php
-        $horasCompletadas = floor($totalMinutos/60);
-        $minutosCompletados = $totalMinutos % 60;
-        $horasTotales = 480;
-        $horasRestantes = $horasTotales - $horasCompletadas;
-        $minutosRestantes = 60 - $minutosCompletados;
-
-        if ($minutosRestantes == 60) {
-            $horasRestantes++;
-            $minutosRestantes = 0;
+    $horasTotales = 480;
+    $minutosCompletados = 0;
+    foreach ($asistencia as $asis) {
+        if ($asis->hora_inicio && $asis->hora_fin) {
+            $minutosCompletados += Carbon\Carbon::parse($asis->hora_inicio)->diffInMinutes(Carbon\Carbon::parse($asis->hora_fin));
         }
+    }
+    $horasCompletadas = floor($minutosCompletados / 60);
+    $minutosCompletados = $minutosCompletados % 60;
+    $horasRestantes = $horasTotales - $horasCompletadas;
+    $minutosRestantes = 60 - $minutosCompletados;
+    if ($minutosRestantes == 60) {
+        $horasRestantes++;
+        $minutosRestantes = 0;
+    }
+    $fechaTermino = date('d-m-Y', strtotime('+' . ceil($horasRestantes / 17.5) . ' weeks'));
     @endphp
+
     <br>
     <table>
         <thead>
@@ -154,24 +167,9 @@
             </tr>
         </tbody>
     </table>
-    <p>Fecha proxima de termino:
-        @php
-            $horasCompletadas = floor($totalMinutos/60);
-            $horasTotales = 480;
-            $horasRestantes = $horasTotales - $horasCompletadas;
-            $horasRestantesEnMinutos = $horasRestantes * 60;
-            $minutosCompletados = $totalMinutos % 60;
-            $minutosRestantes = 60 - $minutosCompletados;
 
-            if ($minutosRestantes == 60) {
-                $horasRestantes++;
-                $minutosRestantes = 0;
-            }
+    <p>Fecha proxima de termino: {{ $fechaTermino }}</p>
 
-            $fechaTermino = date('d-m-Y', strtotime('+' . ceil($horasRestantesEnMinutos/60/17.5) . ' weeks'));
-            echo $fechaTermino;
-        @endphp
-    </p>
 
     <br>
     <p style="text-align: center;">ATENTAMENTE</p>
