@@ -52,3 +52,7 @@ button {
     text-align: center;
     color: #c4c3ca;
 }
+
+.margin {
+    margin: 30px 0px;
+}

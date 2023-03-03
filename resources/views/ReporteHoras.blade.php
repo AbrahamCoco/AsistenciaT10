@@ -134,7 +134,7 @@
         </tbody>
     </table>
     @php
-    $horasTotales = 480;
+    $horasTotales = 479;
     $minutosCompletados = 0;
     foreach ($asistencia as $asis) {
         if ($asis->hora_inicio && $asis->hora_fin) {
@@ -161,7 +161,7 @@
         </thead>
         <tbody>
             <tr>
-                <td><strong>{{ $horasTotales }} Horas</strong></td>
+                <td><strong>480 Horas</strong></td>
                 <td>{{ $horasCompletadas }} horas y {{ $minutosCompletados }} minutos</td>
                 <td>{{ $horasRestantes }} horas y {{ $minutosRestantes }} minutos</td>
             </tr>

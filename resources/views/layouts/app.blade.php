@@ -13,6 +13,7 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         
+        <script src="{{ asset('node_modules/jquery/dist/jquery.min.js') }}"></script>
         <script src="{{ asset('js/jquery.slim.js')}}" defer></script>
         <script src="{{ asset('js/popper.js')}}" defer></script>
         <script src="{{ asset('js/bootstrap.min.js')}}" defer></script>
@@ -50,4 +51,6 @@
 
         @livewireScripts
     </body>
+
+    @yield('script')
 </html>

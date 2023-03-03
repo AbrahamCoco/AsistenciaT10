@@ -12,7 +12,7 @@
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
 
                 <div class="container">
-                    <div class="table table-resposive table-striped">
+                    <div class="table table-responsive table-striped">
                         <table>
                             <thead class="text-center">
                                 <th>Nombre completo</th>
