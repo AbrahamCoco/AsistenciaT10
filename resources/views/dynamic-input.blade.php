@@ -48,9 +48,9 @@
                     </form>
                 </div>
             </div>
-            <button type="button" class="btn btn-info margin btn-agregar-fila">
+            {{-- <button type="button" class="btn btn-info margin btn-agregar-fila">
                 Agregar fila
-            </button>
+            </button> --}}
         </div>
     </div>
 
