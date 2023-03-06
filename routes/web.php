@@ -41,8 +41,8 @@ Route::middleware([
     Route::get('/dashboard', [HoraController::class, 'index'])->name('dashboard');
     Route::post('/dashboard/store', [HoraController::class, 'store'])->name('dashboard.horaInicio');
     Route::put('/updatehora/{id}', [HoraController::class, 'updatehora'])->name('dashboard.update');
-    Route::get('/dynamic-input', [HoraController::class, 'formInsert'])->name('Dynamic-Input');
-    Route::post('/dynamic-input/insert', [HoraController::class, 'insert'])->name('Dynamic-Input.insert');
+    Route::get('/dynamic-input', [HoraController::class, 'formInsert'])->name('dynamic-input');
+    Route::post('/dynamic-input/insert', [HoraController::class, 'insert'])->name('dynamic-input.insert');
 
     //Rutas para generar pdf's
     Route::get('/contrato/{id}', [PdfController::class, 'contrato'])->name('contrato');

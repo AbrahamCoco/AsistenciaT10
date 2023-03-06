@@ -62,7 +62,7 @@ class HoraController extends Controller
             $horas = HoraRegis::where('id_user', $selected_user)->get();
         }
 
-        return view('Dynamic-Input', compact('users', 'selected_user', 'horas'));
+        return view('dynamic-input', compact('users', 'selected_user', 'horas'));
     }
 
 
@@ -80,6 +80,6 @@ class HoraController extends Controller
             'hora_transcurridas' => $horas_transcurridas,
         ]);
 
-        return redirect()->route('Dynamic-Input')->with('message', 'Hora Agregada con exito.');
+        return redirect()->route('dynamic-input')->with('message', 'Hora Agregada con exito.');
     }
 }

@@ -11,7 +11,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 <div class="container">
-                    <form action=" {{ route('Dynamic-Input.insert') }} " method="POST">
+                    <form action=" {{ route('dynamic-input.insert') }} " method="POST">
                         @csrf
                         <div class="table table-responsive table-striped">
                             <table id="tabla">
