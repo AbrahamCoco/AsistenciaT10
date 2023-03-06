@@ -52,12 +52,19 @@ class HoraController extends Controller
         return redirect()->route('dashboard')->with('success', 'Hora actualizada correctamente.');
     }
 
-    public function formInsert()
+    public function formInsert(Request $request)
     {
         $users = User::pluck('name', 'id');
+        $selected_user = $request->input('id_user');
 
-        return view('Dynamic-Input', compact('users'));
+        $horas = [];
+        if ($selected_user) {
+            $horas = HoraRegis::where('id_user', $selected_user)->get();
+        }
+
+        return view('Dynamic-Input', compact('users', 'selected_user', 'horas'));
     }
+
 
     public function insert(Request $request)
     {
