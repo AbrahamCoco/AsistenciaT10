@@ -13,6 +13,7 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         
+        <script src="{{ asset('node_modules/jquery/dist/jquery.min.js') }}"></script>
         <script src="{{ asset('js/jquery.slim.js')}}" defer></script>
         <script src="{{ asset('js/popper.js')}}" defer></script>
         <script src="{{ asset('js/bootstrap.min.js')}}" defer></script>
@@ -20,7 +21,7 @@
         <!-- Styles -->
         <link rel="stylesheet" href="{{ asset('css/style.css') }}">
         <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
-        <link rel="stylesheet" href="{{ asset('css/login.css') }}">
+        @yield('styles')
         
         @livewireStyles
         {{-- <link href="https://cdn.jsdelivr.net/npm/tailwindcss@latest/dist/tailwind.min.css" rel="stylesheet"> --}}
@@ -50,4 +51,6 @@
 
         @livewireScripts
     </body>
+
+    @yield('script')
 </html>

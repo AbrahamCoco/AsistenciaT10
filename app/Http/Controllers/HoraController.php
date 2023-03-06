@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\HoraRegis;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -49,5 +50,36 @@ class HoraController extends Controller
         $hora->save();
 
         return redirect()->route('dashboard')->with('success', 'Hora actualizada correctamente.');
+    }
+
+    public function formInsert(Request $request)
+    {
+        $users = User::pluck('name', 'id');
+        $selected_user = $request->input('id_user');
+
+        $horas = [];
+        if ($selected_user) {
+            $horas = HoraRegis::where('id_user', $selected_user)->get();
+        }
+
+        return view('dynamic-input', compact('users', 'selected_user', 'horas'));
+    }
+
+
+    public function insert(Request $request)
+    {
+        $hora_inicio = Carbon::createFromFormat('Y-m-d\TH:i', $request->entrada);
+        $hora_fin = Carbon::createFromFormat('Y-m-d\TH:i', $request->salida);
+
+        $horas_transcurridas = $hora_fin->diffInMinutes($hora_inicio) / 60;
+
+        HoraRegis::create([
+            'user_id' => $request->id_user,
+            'hora_inicio' => $hora_inicio,
+            'hora_fin' => $hora_fin,
+            'hora_transcurridas' => $horas_transcurridas,
+        ]);
+
+        return redirect()->route('dynamic-input')->with('message', 'Hora Agregada con exito.');
     }
 }

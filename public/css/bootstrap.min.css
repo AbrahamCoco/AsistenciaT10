@@ -101,7 +101,8 @@ h6 {
 
 p {
     margin-top: 0;
-    margin-bottom: 1rem
+    margin-bottom: 1rem;
+    color: #c4c3ca
 }
 
 abbr[data-original-title],
@@ -176,15 +177,15 @@ sup {
 }
 
 a {
-    color: #007bff;
+    color: #ffffff;
     text-decoration: none;
     background-color: transparent;
     -webkit-text-decoration-skip: objects
 }
 
 a:hover {
-    color: #0056b3;
-    text-decoration: underline
+    color: #ffffff;
+    text-decoration: none
 }
 
 a:not([href]):not([tabindex]) {
@@ -243,7 +244,8 @@ caption {
 }
 
 th {
-    text-align: inherit
+    text-align: inherit;
+    color: #c4c3ca
 }
 
 label {
@@ -6672,7 +6674,7 @@ button.bg-dark:hover {
 }
 
 .bg-white {
-    background-color: #fff !important
+    background-color: #1f2029 !important
 }
 
 .bg-transparent {

@@ -1,7 +1,10 @@
 .image {
-    width: 8%;
-    height: auto;
-    margin: 40px;
+    height: 90px;
+    margin: 20px;
+}
+
+.logo-image {
+    height: 50px;
 }
 
 .parrafo {
@@ -47,4 +50,9 @@ button {
 
 .itemR {
     text-align: center;
+    color: #c4c3ca;
+}
+
+.margin {
+    margin: 30px 0px;
 }

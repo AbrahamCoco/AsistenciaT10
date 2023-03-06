@@ -3,7 +3,10 @@
 use App\Http\Controllers\HoraController;
 use App\Http\Controllers\PdfController;
 use App\Http\Controllers\RegistroController;
+use App\Models\HoraRegis;
+use FontLib\Table\Type\post;
 use Illuminate\Support\Facades\Route;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,7 +30,7 @@ Route::middleware([
 ])->group(function () {
 
     // Rutas para el registro   
-    Route::get('/otraPagina/create', [RegistroController::class, 'create'])->name('otraPagina');
+    Route::get('/Registro/create', [RegistroController::class, 'create'])->name('Registro');
     Route::post('/Registro', [RegistroController::class, 'store'])->name('Registro.store');
     Route::get('/PrestadoresServicio', [RegistroController::class, 'show'])->name('PrestadoresServicio');
     Route::get('/Prestadores/{registro}/edit', [RegistroController::class, 'edit'])->name('Registro.edit');
@@ -38,6 +41,8 @@ Route::middleware([
     Route::get('/dashboard', [HoraController::class, 'index'])->name('dashboard');
     Route::post('/dashboard/store', [HoraController::class, 'store'])->name('dashboard.horaInicio');
     Route::put('/updatehora/{id}', [HoraController::class, 'updatehora'])->name('dashboard.update');
+    Route::get('/dynamic-input', [HoraController::class, 'formInsert'])->name('dynamic-input');
+    Route::post('/dynamic-input/insert', [HoraController::class, 'insert'])->name('dynamic-input.insert');
 
     //Rutas para generar pdf's
     Route::get('/contrato/{id}', [PdfController::class, 'contrato'])->name('contrato');
