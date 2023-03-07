@@ -43,7 +43,7 @@
                                 </div>
                                 <div class="col-auto">
                                     <x-jet-label for="fechaAgenda" value="{{ __('Fecha de agenda')}}" />
-                                    <x-jet-input id="fechaAgenda" class="block mt-1 w-full" type="date" name="fechaAgenda" :value="old('fechaAgenda')" autofocus/>
+                                    <x-jet-input id="fechaAgenda" class="block mt-1 w-full" type="date" name="fechaAgenda" :value="old('fechaAgenda')" autofocus value="{{$registro->fechaAgenda}}"/>
                                 </div>
                             </div>
                         </div>
@@ -52,11 +52,11 @@
                             <div class="row g-3">
                                 <div class="col-6">
                                     <x-jet-label for="ce" value="{{ __('Clave de Elector (CE)') }}" />
-                                    <x-jet-input id="ce" class="block mt-1 w-full" type="text" name="ce" :value="old('ce')" autofocus />
+                                    <x-jet-input id="ce" class="block mt-1 w-full" type="text" name="ce" :value="old('ce')" autofocus value="{{$registro->ce}}"/>
                                 </div>
                                 <div class="col-6">
                                     <x-jet-label for="curp" value="{{ __('Clave Unica de Registro de Poblacion (CURP)') }}" />
-                                    <x-jet-input id="curp" class="block mt-1 w-full" type="text" name="curp" :value="old('curp')" autofocus />
+                                    <x-jet-input id="curp" class="block mt-1 w-full" type="text" name="curp" :value="old('curp')" autofocus value="{{$registro->curp}}"/>
                                 </div>
                             </div>
                         </div>
