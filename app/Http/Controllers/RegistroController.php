@@ -16,7 +16,7 @@ class RegistroController extends Controller
 
     public function store(Request $request)
     {
-        User::create([
+        $user = User::create([
             'name' => $request->name,
             'fom' => $request->fom,
             'telefono' => $request->telefono,
@@ -27,24 +27,15 @@ class RegistroController extends Controller
             'direccion' => $request->direccion,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-        ])->assignRole('PrestadorDeServicio');
+        ]);
 
-        // $registro = new User();
+        if ($request->rol == "Administrador") {
+            $user->assignRole('Administrador');
+        } else {
+            $user->assignRole('PrestadorDeServicio');
+        }
 
-        // $registro->name = $request->name;
-        // $registro->fom = $request->fom;
-        // $registro->telefono = $request->telefono;
-        // $registro->tipo = $request->tipo;
-        // $registro->fechaAgenda = $request->fechaAgenda;
-        // $registro->ce = $request->ce;
-        // $registro->curp = $request->curp;
-        // $registro->direccion = $request->direccion;
-        // $registro->email = $request->email;
-        // $registro->password = Hash::make($request->password);
-
-        // $registro->save();
-
-        return redirect()->route('PrestadoresServicio')->with('message', 'Usuario agregado con exito.');
+        return redirect()->route('PrestadoresServicio')->with('message', 'Usuario agregado con éxito.');
     }
 
     public function edit(User $registro)

@@ -59,8 +59,23 @@
                         </div>
 
                         <div class="mt-4">
-                            <x-jet-label for="direccion" value="{{ __('Direccion de residencia') }}" />
-                            <x-jet-input id="direccion" class="block mt-1 w-full" type="text" name="direccion" :value="old('direccion')" />
+                            <div class="row g-3">
+                                <div class="col-6">
+                                    <x-jet-label for="direccion" value="{{ __('Direccion de residencia') }}" />
+                                    <x-jet-input id="direccion" class="block mt-1 w-full" type="text" name="direccion" :value="old('direccion')" />
+                                </div>
+                                <div class="col-6">
+                                    <x-jet-label for="rol" value="{{ __('Rol que ocupara en la empresa')}}"/>
+                                    <label class="text-gray-700">
+                                        <input type="radio" name="rol" value="PrestadorDeServicio">
+                                        Prestador de servicio
+                                    </label>
+                                    <label class="text-gray-700">
+                                        <input type="radio" name="rol" value="Administrador">
+                                        Administrador
+                                    </label>
+                                </div>
+                            </div>
                         </div>
 
                         <div class="mt-4">
@@ -69,13 +84,16 @@
                         </div>
 
                         <div class="mt-4">
-                            <x-jet-label for="password" value="{{ __('Contraseña') }}" />
-                            <x-jet-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
-                        </div>
-
-                        <div class="mt-4">
-                            <x-jet-label for="password_confirmation" value="{{ __('Confirma la contraseña') }}" />
-                            <x-jet-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" />
+                            <div class="row g-3">
+                                <div class="col-6">
+                                    <x-jet-label for="password" value="{{ __('Contraseña') }}" />
+                                    <x-jet-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
+                                </div>
+                                <div class="col-6">
+                                    <x-jet-label for="password_confirmation" value="{{ __('Confirma la contraseña') }}" />
+                                    <x-jet-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" />
+                                </div>
+                            </div>
                         </div>
 
                         @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
