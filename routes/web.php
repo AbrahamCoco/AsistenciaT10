@@ -3,10 +3,7 @@
 use App\Http\Controllers\HoraController;
 use App\Http\Controllers\PdfController;
 use App\Http\Controllers\RegistroController;
-use App\Models\HoraRegis;
-use FontLib\Table\Type\post;
 use Illuminate\Support\Facades\Route;
-use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,4 +44,5 @@ Route::middleware([
     //Rutas para generar pdf's
     Route::get('/contrato/{id}', [PdfController::class, 'contrato'])->name('contrato');
     Route::get('/reporte/{user_id}', [PdfController::class, 'reportehoras'])->name('reportehoras');
+    Route::get('/pdf_auxiliar/{id}', [PdfController::class, 'pdf_auxiliar'])->name('pdf_auxiliar');
 });
