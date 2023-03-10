@@ -16,7 +16,6 @@ return new class extends Migration
             $table->string('name');
             $table->string('fom');
             $table->string('telefono');
-            $table->string('tipo');
             $table->timestamp('fechaAgenda');
             $table->string('ce');
             $table->string('curp');

@@ -29,7 +29,6 @@ class User extends Authenticatable
         'name',
         'fom',
         'telefono',
-        'tipo',
         'fechaAgenda',
         'ce',
         'curp',

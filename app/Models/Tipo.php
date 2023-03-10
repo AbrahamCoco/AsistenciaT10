@@ -4,16 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class HoraRegis extends Model
+class Tipo extends Model
 {
-    protected $table = 'horas_registradas';
+    protected $table = 'tipo';
 
     protected $fillable = [
-        'hora_inicio',
-        'hora_fin',
-        'horas_transcurridas',
         'user_id',
-        'tipo_id',
+        'tipo',
     ];
 
     /**
@@ -25,11 +22,5 @@ class HoraRegis extends Model
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
         return $this->belongsTo('App\User');
-    }
-
-    public function tipo()
-    {
-        return $this->belongsTo(Tipo::class, 'tipo_id', 'id');
-        return $this->belongsTo('App\Tipo');
     }
 }

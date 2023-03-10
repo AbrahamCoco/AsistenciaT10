@@ -11,7 +11,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
 
-                <div class="container contenedor">
+                <div class="container">
                     <form method="POST" action="{{ route('Registro.store') }}">
                         @csrf
 
@@ -41,9 +41,10 @@
                                 <div class="col-3">
                                     <x-jet-label for="tipo" value="{{ __('Tipo')}}" />
                                     <select name="tipo">
-                                        <option value="Servicio Social">Servicio social</option>
+                                        <option value="Servicio Social">Servicio Social</option>
                                         <option value="Practicas Profesionales">Practicas profesionales</option>
                                         <option value="Jovenes Construyendo el Futuro">Jovenes Construyendo el futuro</option>
+                                        <option value="Externo">Externo</option>
                                     </select>
                                 </div>
                                 <div class="col-3">

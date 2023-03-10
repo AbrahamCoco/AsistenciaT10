@@ -20,9 +20,7 @@
                                 <th>Telefono de contacto</th>
                                 <th>Modificar</th>
                                 <th>Eliminar</th>
-                                <th>Reporte</th>
-                                <th>Contrato</th>
-                                <th>Reporte Auxliar</th>
+                                <th>Mas opciones</th>
                             </thead>
                             <tbody>
                                 @foreach ($registro as $regis)
@@ -45,30 +43,21 @@
                                             </button>
                                         </td>
                                         <td class="itemR">
-                                            <button type="submit" class="btn btn-info">
-                                                <a href="{{ route('reportehoras', $regis->id) }}">
-                                                    <img class="imageR" src="{{ asset('images/descargarpdf.png') }}" alt="">
-                                                </a>
-                                            </button>
+                                            <div class="dropdown">
+                                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                </button>
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                    <a class="dropdown-item" href="{{ route('reportehoras', $regis->id) }}">Descargar Reporte</a>
+                                                    <a class="dropdown-item" href="{{ route('contrato', $regis->id) }}">Descargar Contrato</a>
+                                                    <a class="dropdown-item" href="#modal{{$regis->id}}" data-toggle="modal">Descargar Reporte Especial</a>
+                                                </div>
+                                            </div>
                                         </td>
-                                        <td class="itemR">
-                                            <button type="submit" class="btn btn-info">
-                                                <a href="{{route('contrato', $regis->id)}}">
-                                                    <img class="imageR" src="{{ asset('images/descargarpdf.png') }}" alt="">
-                                                </a>
-                                            </button>
-                                        </td>
-                                        <td class="itemR">
-                                            <button type="submit" class="btn btn-info">
-                                                <a href="#modal{{$regis->id}}" data-toggle="modal">
-                                                    <img class="imageR" src="{{ asset('images/descargarpdf.png') }}" alt="">
-                                                </a>
-                                            </button>
-                                            <div class="modal fade" id="modal{{$regis->id}}" tabindex="-1" role="dialog" aria-labelledby="modalLabel{{$regis->id}}" aria-hidden="true">
+                                        <div class="modal fade" id="modal{{$regis->id}}" tabindex="-1" role="dialog" aria-labelledby="modalLabel{{$regis->id}}" aria-hidden="true">
                                                 <div class="modal-dialog" role="document">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
-                                                            <h5 class="modal-title" id="modalLabel">Generar PDF</h5>
+                                                            <h5 class="modal-title text-gray-800" id="modalLabel">Generar PDF</h5>
                                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                                 <span aria-hidden="true">&times;</span>
                                                             </button>
@@ -76,23 +65,22 @@
                                                         <form action="{{ route('pdf_auxiliar', $regis->id) }}" method="GET">
                                                             <div class="modal-body">
                                                                 <div class="form-group">
-                                                                    <label for="fecha_inicio">Fecha inicio:</label>
+                                                                    <label for="fecha_inicio" class="text-gray-800">Fecha inicio:</label>
                                                                     <input type="date" class="form-control" id="fecha_inicio" name="fecha_inicio" required>
                                                                 </div>
                                                                 <div class="form-group">
-                                                                    <label for="fecha_fin">Fecha fin:</label>
-                                                                    <input type="date" class="form-control" id="fecha_fin" name="fecha_fin" required>
-                                                                </div>
+                                                                    <label for="fecha_fin" class="text-gray-800">Fecha fin:</label>
+                                                                <input type="date" class="form-control" id="fecha_fin" name="fecha_fin" required>
                                                             </div>
-                                                            <div class="modal-footer">
-                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                                                <button type="submit" class="btn btn-primary">Generar PDF</button>
-                                                            </div>
-                                                        </form>
-                                                    </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                                            <button type="submit" class="btn btn-primary">Generar PDF</button>
+                                                        </div>
+                                                    </form>
                                                 </div>
                                             </div>
-                                        </td>
+                                        </div>
                                     </tr>
                                 @endforeach
                             </tbody>

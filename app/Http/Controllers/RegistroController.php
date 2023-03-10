@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Tipo;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -20,13 +21,21 @@ class RegistroController extends Controller
             'name' => $request->name,
             'fom' => $request->fom,
             'telefono' => $request->telefono,
-            'tipo' => $request->tipo,
             'fechaAgenda' => $request->fechaAgenda,
             'ce' => $request->ce,
             'curp' => $request->curp,
             'direccion' => $request->direccion,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+        ]);
+
+        // Obtenemos el ID del usuario que queremos relacionar con un Tipo
+        $userId = $user->id;
+
+        // Creamos un Tipo relacionado con el usuario obtenido anteriormente
+        Tipo::create([
+            'user_id' => $userId,
+            'tipo' => $request->tipo
         ]);
 
         if ($request->rol == "Administrador") {
@@ -54,13 +63,21 @@ class RegistroController extends Controller
         $registro->name = $request->name;
         $registro->fom = $request->fom;
         $registro->telefono = $request->telefono;
-        $registro->tipo = $request->tipo;
         $registro->fechaAgenda = $request->fechaAgenda;
         $registro->ce = $request->ce;
         $registro->curp = $request->curp;
         $registro->direccion = $request->direccion;
         $registro->email = $request->email;
         $registro->password = Hash::make($request->password);
+
+        // Obtenemos el ID del usuario que queremos relacionar con un Tipo
+        $userId = $user->id;
+
+        // Creamos un Tipo relacionado con el usuario obtenido anteriormente
+        Tipo::create([
+            'user_id' => $userId,
+            'tipo' => $request->tipo
+        ]);
 
         $registro->save();
 
