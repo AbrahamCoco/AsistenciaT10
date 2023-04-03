@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('horas_registradas', function (Blueprint $table) {
             $table->id();
             $table->datetime('hora_inicio');
-            $table->datetime('hora_fin');
-            $table->string('horas_transcurridas');
+            $table->dateTime('hora_fin')->nullable();
+            $table->string('horas_transcurridas')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->unsignedBigInteger('tipo_id');

@@ -66,4 +66,12 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    /**
+     * Get the types associated with the user.
+     */
+    public function tipos()
+    {
+        return $this->hasMany(Tipo::class);
+    }
 }

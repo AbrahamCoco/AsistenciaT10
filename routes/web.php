@@ -3,6 +3,7 @@
 use App\Http\Controllers\HoraController;
 use App\Http\Controllers\PdfController;
 use App\Http\Controllers\RegistroController;
+use Illuminate\Routing\Route as RoutingRoute;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -38,8 +39,10 @@ Route::middleware([
     Route::get('/dashboard', [HoraController::class, 'index'])->name('dashboard');
     Route::post('/dashboard/store', [HoraController::class, 'store'])->name('dashboard.horaInicio');
     Route::put('/updatehora/{id}', [HoraController::class, 'updatehora'])->name('dashboard.update');
-    Route::get('/dynamic-input', [HoraController::class, 'formInsert'])->name('dynamic-input');
-    Route::post('/dynamic-input/insert', [HoraController::class, 'insert'])->name('dynamic-input.insert');
+    Route::get('/insertar-horas', [HoraController::class, 'formInsert'])->name('insertar-horas');
+    Route::get('/horas-registradas/{id}', [HoraController::class, 'search'])->name('horas-registradas');
+    Route::post('/horas-registradas/{id}/{tipo_id}', [HoraController::class, 'tableHoras'])->name('tabla-horas');
+    // Route::post('/dynamic-input/insert', [HoraController::class, 'insert'])->name('dynamic-input.insert');
 
     //Rutas para generar pdf's
     Route::get('/contrato/{id}', [PdfController::class, 'contrato'])->name('contrato');

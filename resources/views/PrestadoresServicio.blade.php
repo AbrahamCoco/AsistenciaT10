@@ -29,18 +29,18 @@
                                         <td class="itemR">{{$regis->email}}</td>
                                         <td class="itemR">{{$regis->telefono}}</td>
                                         <td class="itemR">
-                                            <button type="submit" class="btn btn-success">
-                                                <a href="{{route('Registro.edit', $regis)}}">
+                                            <a href="{{route('Registro.edit', $regis)}}">
+                                                <button type="submit" class="btn btn-success">
                                                     <img class="imageR" src="{{ asset('images/editar.png') }}" alt="">
-                                                </a>
-                                            </button>
+                                                </button>
+                                            </a>
                                         </td>
                                         <td class="itemR">
-                                            <button type="submit" class="btn btn-danger">
-                                                <a href="{{route('Registro.delete', $regis)}}">
+                                            <a href="{{route('Registro.delete', $regis)}}">
+                                                <button type="submit" class="btn btn-danger">
                                                     <img class="imageR" src="{{ asset('images/eliminar.png') }}" alt="">
-                                                </a>
-                                            </button>
+                                                </button>
+                                            </a>
                                         </td>
                                         <td class="itemR">
                                             <div class="dropdown">
