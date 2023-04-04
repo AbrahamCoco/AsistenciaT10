@@ -1,9 +1,5 @@
 @section('title', 'Modificar horas')
 
-@section('styles')
-    <link rel="stylesheet" href="{{ asset('css/login.css') }}">
-@endsection
-
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -19,16 +15,39 @@
                     <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                         {{ __('Selecciona el tipo de de servicio que esta haciendo') }}
                     </h2>
-                    <form action="{{ route('tabla-horas', ['id' => $user->id, 'tipo_id' => $tipos->first() ? $tipos->first()->id : null]) }}" method="POST">
+                    {{-- <form action="{{ route('tabla-horas', ['id' => $user->id, 'tipo_id' => $tipos->first() ? $tipos->first()->id : null]) }}" method="POST">
                         @csrf
                         <select name="tipo_id">
                             <option>Selecciona una opción</option>
                             @foreach ($tipos as $id => $tipo)
-                                <option value="{{ $id }}" {{ old('tipo_id') == $id ? 'selected' : '' }}>{{ $tipo }}</option>
+                                <option value="{{ $id }}" {{ old('tipo_id') == $id ? 'selected' : '' }}>{{ $tipo->tipo }}</option>
                             @endforeach
                         </select>
                         <button type="submit" class="btn btn-secondary">Ver la tabla de horas</button>
-                    </form>
+                    </form> --}}
+                    <table class="table table-responsive table-striped">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Tipo de servicio</th>
+                                <th>Seleccionar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($tipos as $id => $tipo)
+                                <tr>
+                                    <td class="text-gray-700">{{ $id }}</td>
+                                    <td class="text-gray-700">{{ $tipo->tipo }}</td>
+                                    <td>
+                                        <a href="{{ route('tabla-horas', ['id' => $user->id, 'tipo_id' => $tipo->id]) }}">
+                                            <button type="submit" class="btn btn-primary">Seleccionar</button>
+                                        </a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+
                 </div>
             </div>
         </div>

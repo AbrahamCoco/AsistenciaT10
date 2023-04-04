@@ -33,10 +33,8 @@ class HoraController extends Controller
         $asistencia->horas_transcurridas = null;
         $asistencia->user_id = Auth()->user()->id;
 
-        // Buscar el registro de Tipo correspondiente al usuario actual y obtener su ID
-        $tipo = Tipo::where('user_id', Auth()->user()->id)
-            ->where('tipo', 'Servicio Social')
-            ->first();
+        // Obtener el tipo de servicio actual del usuario y asignarlo a la propiedad tipo_id
+        $tipo = Auth()->user()->tipos()->latest()->first();
         $asistencia->tipo_id = $tipo ? $tipo->id : null;
 
         $asistencia->save();
@@ -95,11 +93,11 @@ class HoraController extends Controller
         $hora = new HoraRegis();
         $hora->user_id = $request->input('user_id');
         $hora->tipo_id = $request->input('tipo_id');
-        $hora->hora_ini = $request->input('entrada');
+        $hora->hora_inicio = $request->input('entrada');
         $hora->hora_fin = $request->input('salida');
         $hora->horas_transcurridas = $horas_transcurridas;
         $hora->save();
 
-        return redirect()->route('dynamic-input')->with('message', 'Hora Agregada con exito.');
+        return redirect()->route('insertar-horas')->with('message', 'Hora Agregada con exito.');
     }
 }

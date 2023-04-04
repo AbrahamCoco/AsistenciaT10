@@ -72,6 +72,6 @@ class User extends Authenticatable
      */
     public function tipos()
     {
-        return $this->hasMany(Tipo::class);
+        return $this->hasMany(Tipo::class, 'user_id', 'id');
     }
 }

@@ -16,7 +16,7 @@
                             <h3 class="text-gray-700">Horas registradas para {{ $user->name }}, con ID; {{ $user->id }}. Que esta prestando servicio como {{ $tipo->tipo }}.</h3>
                         </div>
                         <div class="col-2">
-                            <button type="submit" class="btn btn-info">Agregar hora</button>
+                            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#agregarHoraModal">Agregar hora</button>
                         </div>
                     </div>
                     <table class="table table-striped color-table-letra">
@@ -70,6 +70,34 @@
                             @endforeach
                         </tbody>
                     </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="agregarHoraModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title text-gray-700" id="exampleModalLabel">Agregar hora</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form method="POST" action="{{ route('dynamic-input.insert') }}">
+                        @csrf
+                        <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+                        <input type="hidden" name="tipo_id" value="{{ Auth::user()->tipos()->latest()->first()->id }}">
+                        <div class="modal-body">
+                            <p>Hora de entrada</p>
+                            <x-jet-input id="entrada" class="block mt-1 w-full" type="datetime-local" name="entrada" :value="old('entrada')" autofocus />
+                            <p>Hora de salida</p>
+                            <x-jet-input id="salida" class="block mt-1 w-full" type="datetime-local" name="salida" :value="old('salida')" autofocus />
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                            <button type="submit" class="btn btn-primary">Guardar</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

@@ -1,9 +1,5 @@
 @section('title', 'Insertar horas')
 
-@section('styles')
-    <link rel="stylesheet" href="{{ asset('css/login.css') }}">
-@endsection
-
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -33,9 +29,9 @@
                                                 <td class="text-gray-700">{{ $user_id }}</td>
                                                 <td class="text-gray-700">{{ $name }}</td>
                                                 <td>
-                                                    <button type="button" class="btn btn-secondary">
-                                                        <a href="{{ route('horas-registradas', ['id' => $user_id]) }}">Seleccionar tipo</a>
-                                                    </button>
+                                                    <a href="{{ route('horas-registradas', ['id' => $user_id]) }}">
+                                                        <button type="button" class="btn btn-primary">Seleccionar tipo</button>
+                                                    </a>
                                                 </td>
                                             </tr>
                                         @endforeach
