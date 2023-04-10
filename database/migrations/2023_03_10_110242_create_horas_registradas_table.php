@@ -19,9 +19,9 @@ return new class extends Migration
             $table->dateTime('hora_fin')->nullable();
             $table->string('horas_transcurridas')->nullable();
             $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->unsignedBigInteger('tipo_id');
-            $table->foreign('tipo_id')->references('id')->on('tipo');
+            $table->foreign('tipo_id')->references('id')->on('tipo')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -32,6 +32,7 @@
                         <tbody>
                             @php
                                 $totalMinutos = 0;
+                                $con = 1
                             @endphp
                             @foreach($horas as $i => $hora)
                             @php
@@ -47,26 +48,31 @@
                                 }
                             @endphp
                             <tr>
-                                <td class="text-gray-700">{{ $i + 1}}</td>
+                                <td class="text-gray-700">{{ $con }}</td>
                                 <td class="text-gray-700">{{ $fecha }}</td>
                                 <td class="text-gray-700">{{ substr($hora_inicio, 11, 5) }} hrs</td>
                                 <td class="text-gray-700">{{ substr($hora_fin, 11, 5) }} hrs</td>
                                 <td class="text-gray-700">{{ $horas }}</td>
                                 <td>
-                                    <a href="">
-                                        <button type="submit" class="btn btn-success">
+                                    <a href="{{ route('editar', ['id' => $user->id, 'tipo_id' => $tipo->id, 'hora_id' => $hora->id]) }}">
+                                        <button type="button" class="btn btn-success">
                                             <img class="imageR" src="{{ asset('images/editar.png') }}" alt="">
                                         </button>
                                     </a>
                                 </td>
                                 <td>
-                                    <a href="">
+                                    <form action="{{ route('horas-registradas.eliminar', $hora->id) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
                                         <button type="submit" class="btn btn-danger">
                                             <img class="imageR" src="{{ asset('images/eliminar.png') }}" alt="">
                                         </button>
-                                    </a>
+                                    </form>
                                 </td>
                             </tr>
+                            @php
+                                $con ++
+                            @endphp
                             @endforeach
                         </tbody>
                     </table>
@@ -83,7 +89,7 @@
                         <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <form method="POST" action="{{ route('dynamic-input.insert') }}">
+                    <form method="POST" action="{{ route('horas-registradas.insert') }}">
                         @csrf
                         <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
                         <input type="hidden" name="tipo_id" value="{{ Auth::user()->tipos()->latest()->first()->id }}">

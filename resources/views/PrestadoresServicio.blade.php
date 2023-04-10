@@ -14,7 +14,8 @@
                 <div class="container">
                     <div class="table table-responsive table-striped">
                         <table>
-                            <thead class="text-center">
+                            <thead>
+                                <th>ID</th>
                                 <th>Nombre completo</th>
                                 <th>Correo electronico</th>
                                 <th>Telefono de contacto</th>
@@ -23,26 +24,30 @@
                                 <th>Mas opciones</th>
                             </thead>
                             <tbody>
+                                @php
+                                    $con = 1
+                                @endphp
                                 @foreach ($registro as $regis)
                                     <tr>
-                                        <td class="itemR">{{$regis->name}}</td>
-                                        <td class="itemR">{{$regis->email}}</td>
-                                        <td class="itemR">{{$regis->telefono}}</td>
-                                        <td class="itemR">
+                                        <td class="text-gray-700">{{$con}}</td>
+                                        <td class="text-gray-700">{{$regis->name}}</td>
+                                        <td class="text-gray-700">{{$regis->email}}</td>
+                                        <td class="text-gray-700">{{$regis->telefono}}</td>
+                                        <td class="text-gray-700">
                                             <a href="{{route('Registro.edit', $regis)}}">
                                                 <button type="submit" class="btn btn-success">
                                                     <img class="imageR" src="{{ asset('images/editar.png') }}" alt="">
                                                 </button>
                                             </a>
                                         </td>
-                                        <td class="itemR">
+                                        <td class="text-gray-700">
                                             <a href="{{route('Registro.delete', $regis)}}">
                                                 <button type="submit" class="btn btn-danger">
                                                     <img class="imageR" src="{{ asset('images/eliminar.png') }}" alt="">
                                                 </button>
                                             </a>
                                         </td>
-                                        <td class="itemR">
+                                        <td class="text-gray-700">
                                             <div class="dropdown">
                                                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                 </button>
@@ -82,6 +87,9 @@
                                             </div>
                                         </div>
                                     </tr>
+                                    @php
+                                        $con ++
+                                    @endphp
                                 @endforeach
                             </tbody>
                         </table>

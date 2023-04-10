@@ -15,16 +15,6 @@
                     <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                         {{ __('Selecciona el tipo de de servicio que esta haciendo') }}
                     </h2>
-                    {{-- <form action="{{ route('tabla-horas', ['id' => $user->id, 'tipo_id' => $tipos->first() ? $tipos->first()->id : null]) }}" method="POST">
-                        @csrf
-                        <select name="tipo_id">
-                            <option>Selecciona una opción</option>
-                            @foreach ($tipos as $id => $tipo)
-                                <option value="{{ $id }}" {{ old('tipo_id') == $id ? 'selected' : '' }}>{{ $tipo->tipo }}</option>
-                            @endforeach
-                        </select>
-                        <button type="submit" class="btn btn-secondary">Ver la tabla de horas</button>
-                    </form> --}}
                     <table class="table table-responsive table-striped">
                         <thead>
                             <tr>
@@ -34,9 +24,12 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @php
+                                $con = 1
+                            @endphp
                             @foreach ($tipos as $id => $tipo)
                                 <tr>
-                                    <td class="text-gray-700">{{ $id }}</td>
+                                    <td class="text-gray-700">{{ $con }}</td>
                                     <td class="text-gray-700">{{ $tipo->tipo }}</td>
                                     <td>
                                         <a href="{{ route('tabla-horas', ['id' => $user->id, 'tipo_id' => $tipo->id]) }}">
@@ -44,6 +37,9 @@
                                         </a>
                                     </td>
                                 </tr>
+                                @php
+                                    $con ++
+                                @endphp
                             @endforeach
                         </tbody>
                     </table>

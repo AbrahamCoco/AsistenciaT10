@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use FontLib\Table\Type\post;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -73,5 +74,10 @@ class User extends Authenticatable
     public function tipos()
     {
         return $this->hasMany(Tipo::class, 'user_id', 'id');
+    }
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class)->cascadeDelete();
     }
 }

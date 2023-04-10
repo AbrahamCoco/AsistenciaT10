@@ -24,9 +24,12 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @php
+                                            $con = 1
+                                        @endphp
                                         @foreach ($users as $user_id => $name)
                                             <tr>
-                                                <td class="text-gray-700">{{ $user_id }}</td>
+                                                <td class="text-gray-700">{{ $con }}</td>
                                                 <td class="text-gray-700">{{ $name }}</td>
                                                 <td>
                                                     <a href="{{ route('horas-registradas', ['id' => $user_id]) }}">
@@ -34,6 +37,9 @@
                                                     </a>
                                                 </td>
                                             </tr>
+                                            @php
+                                                $con ++
+                                            @endphp
                                         @endforeach
                                     </tbody>
                                 </table>

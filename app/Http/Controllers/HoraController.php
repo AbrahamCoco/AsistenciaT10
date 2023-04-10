@@ -39,7 +39,7 @@ class HoraController extends Controller
 
         $asistencia->save();
 
-        return redirect()->route('dashboard');
+        return redirect()->route('dashboard')->with('success', 'Bienvenido, registraste con exito tu hora de entrada');
     }
 
     public function updatehora($id)
@@ -67,7 +67,6 @@ class HoraController extends Controller
 
     public function search($user_id)
     {
-        // Aquí puedes hacer lo que necesites con el valor de $user_id
         $user = User::findOrFail($user_id);
         $tipos = Tipo::select('id', 'tipo')->where('user_id', $user_id)->distinct()->get();
 
@@ -81,6 +80,34 @@ class HoraController extends Controller
         $horas = HoraRegis::where('user_id', $user_id)->where('tipo_id', $tipo_id)->get();
 
         return view('tablaHoras', compact('user', 'tipo', 'horas'));
+    }
+
+    public function editarHoras($user_id, $tipo_id, HoraRegis $hora_id)
+    {
+        session(['hora_id' => $hora_id->id]);
+        $editarHoras = HoraRegis::findOrFail($hora_id->id);
+        $hora_inicio = Carbon::parse($editarHoras->hora_inicio)->format('d/m/Y h:i A');
+        $hora_fin = Carbon::parse($editarHoras->hora_fin)->format('d/m/Y h:i A');
+        return view('editarHora', compact('hora_inicio', 'hora_fin', 'user_id', 'tipo_id', 'hora_id'));
+    }
+
+    public function actualizarHoras(Request $request, $user_id, $tipo_id, $hora_id)
+    {
+        $hora_inicio = Carbon::createFromFormat('Y-m-d\TH:i', $request->entrada);
+        $hora_fin = Carbon::createFromFormat('Y-m-d\TH:i', $request->salida);
+
+        $horas_transcurridas = $hora_fin->diffInMinutes($hora_inicio) / 60;
+
+        HoraRegis::where('id', $hora_id)
+            ->where('user_id', $user_id)
+            ->where('tipo_id', $tipo_id)
+            ->update([
+                'hora_inicio' => $request->entrada,
+                'hora_fin' => $request->salida,
+                'horas_transcurridas' => $horas_transcurridas,
+            ]);
+
+        return redirect()->route('insertar-horas')->with('message', 'Hora actualizada con éxito.');
     }
 
     public function insert(Request $request)
@@ -99,5 +126,13 @@ class HoraController extends Controller
         $hora->save();
 
         return redirect()->route('insertar-horas')->with('message', 'Hora Agregada con exito.');
+    }
+
+    public function delete($id)
+    {
+        $hora = HoraRegis::find($id);
+        $hora->delete();
+
+        return redirect()->route('insertar-horas')->with('message', 'Hora eliminado con éxito.');
     }
 }
