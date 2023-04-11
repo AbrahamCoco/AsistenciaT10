@@ -110,20 +110,21 @@ class HoraController extends Controller
         return redirect()->route('insertar-horas')->with('message', 'Hora actualizada con éxito.');
     }
 
-    public function insert(Request $request)
+    public function insert(Request $request, $user_id, $tipo_id)
     {
         $hora_inicio = Carbon::createFromFormat('Y-m-d\TH:i', $request->entrada);
         $hora_fin = Carbon::createFromFormat('Y-m-d\TH:i', $request->salida);
 
         $horas_transcurridas = $hora_fin->diffInMinutes($hora_inicio) / 60;
 
-        $hora = new HoraRegis();
-        $hora->user_id = $request->input('user_id');
-        $hora->tipo_id = $request->input('tipo_id');
-        $hora->hora_inicio = $request->input('entrada');
-        $hora->hora_fin = $request->input('salida');
-        $hora->horas_transcurridas = $horas_transcurridas;
-        $hora->save();
+        // Crear un nuevo registro en la base de datos
+        HoraRegis::create([
+            'hora_inicio' => $hora_inicio,
+            'hora_fin' => $hora_fin,
+            'horas_transcurridas' => $horas_transcurridas,
+            'user_id' => $user_id,
+            'tipo_id' => $tipo_id,
+        ]);
 
         return redirect()->route('insertar-horas')->with('message', 'Hora Agregada con exito.');
     }

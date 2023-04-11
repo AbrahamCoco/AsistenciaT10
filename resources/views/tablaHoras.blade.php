@@ -89,10 +89,10 @@
                         <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <form method="POST" action="{{ route('horas-registradas.insert') }}">
+                    <form method="POST" action="{{ route('horas-registradas.insert', ['user_id' => $user->id, 'tipo_id' => $tipo->id]) }}">
                         @csrf
-                        <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
-                        <input type="hidden" name="tipo_id" value="{{ Auth::user()->tipos()->latest()->first()->id }}">
+                        <input type="hidden" name="user_id" value="{{ $user->id }}">
+                        <input type="hidden" name="tipo_id" value="{{ $tipo->id }}">
                         <div class="modal-body">
                             <p>Hora de entrada</p>
                             <x-jet-input id="entrada" class="block mt-1 w-full" type="datetime-local" name="entrada" :value="old('entrada')" autofocus />

@@ -44,7 +44,7 @@ Route::middleware([
     Route::get('/horas-registradas/{id}/{tipo_id}', [HoraController::class, 'tableHoras'])->name('tabla-horas');
     Route::get('/horas-registradas/{id}/{tipo_id}/{hora_id}', [HoraController::class, 'editarHoras'])->name('editar');
     Route::put('/actualizar/{id}/{tipo_id}/{hora_id}', [HoraController::class, 'actualizarHoras'])->name('actualizar');
-    Route::post('/horas-registradas/insert', [HoraController::class, 'insert'])->name('horas-registradas.insert');
+    Route::post('/horas-registradas/insert/{user_id}/{tipo_id}', [HoraController::class, 'insert'])->name('horas-registradas.insert');
     Route::delete('/horas-registradas/eliminar/{id}', [HoraController::class, 'delete'])->name('horas-registradas.eliminar');
 
     //Rutas para generar pdf's
