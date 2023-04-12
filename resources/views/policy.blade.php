@@ -6,7 +6,8 @@
             </div>
 
             <div class="w-full sm:max-w-2xl mt-6 p-6 bg-white shadow-md overflow-hidden sm:rounded-lg prose">
-                {!! $policy !!}
+                <h1>Politicas de privacidad</h1>
+                <p>Edite este archivo para definir la política de privacidad de su aplicación.</p>
             </div>
         </div>
     </div>

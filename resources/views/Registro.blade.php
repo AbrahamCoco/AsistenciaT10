@@ -7,17 +7,25 @@
         </h2>
     </x-slot>
 
-    <div class="py-12">
+    <div>
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
 
-                <div class="container contenedor">
+                <div class="container">
                     <form method="POST" action="{{ route('Registro.store') }}">
                         @csrf
 
-                        <div>
-                            <x-jet-label for="name" value="{{ __('Nombre Completo') }}" />
-                            <x-jet-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
+                        <div class="mt-4">
+                            <div class="row g-3">
+                                <div class="col-6">
+                                    <x-jet-label for="name" value="{{ __('Nombre Completo') }}" />
+                                    <x-jet-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
+                                </div>
+                                <div class="col-6">
+                                    <x-jet-label for="email" value="{{ __('Correo Electronico') }}" />
+                                    <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
+                                </div>
+                            </div>
                         </div>
 
                         <div class="mt-4">
@@ -33,9 +41,10 @@
                                 <div class="col-3">
                                     <x-jet-label for="tipo" value="{{ __('Tipo')}}" />
                                     <select name="tipo">
-                                        <option value="Servicio Social">Servicio social</option>
-                                        <option value="Practicas Profesionales">Practicas profesionales</option>
-                                        <option value="Jovenes Construyendo el Futuro">Jovenes Construyendo el futuro</option>
+                                        <option value="Servicio Social">Servicio Social</option>
+                                        <option value="Practicas Profesionales">Practicas Profesionales</option>
+                                        <option value="Jovenes Construyendo el Futuro">Jovenes Construyendo el Futuro</option>
+                                        <option value="Externo">Externo</option>
                                     </select>
                                 </div>
                                 <div class="col-3">
@@ -76,11 +85,6 @@
                                     </label>
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="mt-4">
-                            <x-jet-label for="email" value="{{ __('Correo Electronico') }}" />
-                            <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
                         </div>
 
                         <div class="mt-4">

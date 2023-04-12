@@ -13,17 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('horas_registradas', function (Blueprint $table) {
+        Schema::create('tipo', function (Blueprint $table) {
             $table->id();
+            $table->string('tipo');
             $table->unsignedBigInteger('user_id');
-            $table->datetime('hora_inicio')->nullable();
-            $table->datetime('hora_fin')->nullable();
-            $table->string('horas_transcurridas')->nullable();
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }
-
 
     /**
      * Reverse the migrations.
@@ -32,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('time_logs');
+        Schema::dropIfExists('tipo');
     }
 };

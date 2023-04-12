@@ -22,8 +22,8 @@
                         <x-jet-nav-link href="{{ route('PrestadoresServicio') }}" :active="request()->routeIs('PrestadoresServicio')">
                             {{ __('Servicio') }}
                         </x-jet-nav-link>
-                        <x-jet-nav-link href="{{ route('dynamic-input') }}" :active="request()->routeIs('dynamic-input')">
-                            {{ __('Insertar Horas') }}
+                        <x-jet-nav-link href="{{ route('insertar-horas') }}" :active="request()->routeIs('insertar-horas')">
+                            {{ __('Insertar horas') }}
                         </x-jet-nav-link>
                     @endcan
                 </div>
@@ -158,9 +158,9 @@
                 <x-jet-responsive-nav-link href="{{ route('PrestadoresServicio') }}" :active="request()->routeIs('PrestadoresServicio')">
                     {{ __('Servicio') }}
                 </x-jet-responsive-nav-link>
-                <x-jet-nav-link href="{{ route('dynamic-input') }}" :active="request()->routeIs('dynamic-input')">
-                    {{ __('Insertar Horas') }}
-                </x-jet-nav-link>
+                <x-jet-responsive-nav-link href="{{ route('insertar-horas') }}" :active="request()->routeIs('insertar-horas')">
+                    {{ __('Insertar horas') }}
+                </x-jet-responsive-nav-link>
             @endcan
         </div>
 
