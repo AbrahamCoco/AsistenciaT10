@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\HoraRegis;
+use App\Models\Tipo;
 use App\Models\User;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
@@ -15,7 +16,8 @@ class PdfController extends Controller
         $date = new Date();
         $fecha = $date->format('l d F Y');
         $registro = User::findOrFail($id);
-        $pdf = PDF::loadView('Contrato', ['registro' => $registro, 'fecha' => $fecha]);
+        $tipo = Tipo::where('user_id', $id)->with('user')->first();
+        $pdf = PDF::loadView('Contrato', ['registro' => $registro, 'fecha' => $fecha, 'tipo' => $tipo->tipo]);
         return $pdf->download('Contrato.pdf');
     }
 
