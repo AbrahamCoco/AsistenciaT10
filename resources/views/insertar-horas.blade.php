@@ -14,7 +14,9 @@
                     <div class="mt-4">
                         <div class="row g-3">
                             <div class="table table-responsive table-striped">
-                                <x-jet-label for="name" value="{{ __('Escoge a un prestador de servicio para editar sus horas') }}" />
+                                <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                                    {{ __('Escoge a un prestador de servicio para editar sus horas') }}
+                                </h2>
                                 <table>
                                     <thead>
                                         <tr>
