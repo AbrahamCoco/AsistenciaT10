@@ -22,7 +22,6 @@
                     <table class="table table-striped color-table-letra">
                         <thead>
                             <th>ID</th>
-                            <th>Fecha</th>
                             <th>Hora de entrada</th>
                             <th>Hora de salida</th>
                             <th>Horas realizadas</th>
@@ -49,9 +48,8 @@
                             @endphp
                             <tr>
                                 <td class="text-gray-700">{{ $con }}</td>
-                                <td class="text-gray-700">{{ $fecha }}</td>
-                                <td class="text-gray-700">{{ substr($hora_inicio, 11, 5) }} hrs</td>
-                                <td class="text-gray-700">{{ substr($hora_fin, 11, 5) }} hrs</td>
+                                <td class="text-gray-700">{{ $hora_inicio_formateada = date("d/m/Y h:i A", strtotime($hora_inicio)); }}</td>
+                                <td class="text-gray-700">{{ $hora_fin_formateada = date("d/m/Y h:i A", strtotime($hora_fin)); }}</td>
                                 <td class="text-gray-700">{{ $horas }}</td>
                                 <td>
                                     <a href="{{ route('editar', ['id' => $user->id, 'tipo_id' => $tipo->id, 'hora_id' => $hora->id]) }}">

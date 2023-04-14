@@ -77,7 +77,10 @@ class HoraController extends Controller
     {
         $user = User::findOrFail($user_id);
         $tipo = Tipo::findOrFail($tipo_id);
-        $horas = HoraRegis::where('user_id', $user_id)->where('tipo_id', $tipo_id)->get();
+        $horas = HoraRegis::where('user_id', $user_id)
+            ->where('tipo_id', $tipo_id)
+            ->orderBy('hora_inicio', 'desc')
+            ->get();
 
         return view('tablaHoras', compact('user', 'tipo', 'horas'));
     }
