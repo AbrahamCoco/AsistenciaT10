@@ -11,9 +11,9 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 <div class="container">
-                    <h3>Horas registradas para {{ $user->name }}, con ID; {{ $user->id }}</h3>
+                    <h3 class="text-gray-800">Horas registradas para {{ $user->name }}, con ID; {{ $user->id }}</h3>
                     <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                        {{ __('Selecciona el tipo de de servicio que esta haciendo') }}
+                        {{ __('Selecciona el tipo de servicio que esta haciendo') }}
                     </h2>
                     <table class="table table-responsive table-striped">
                         <thead>

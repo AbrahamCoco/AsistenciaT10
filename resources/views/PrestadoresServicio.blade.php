@@ -59,23 +59,23 @@
                                             </div>
                                         </td>
                                         <div class="modal fade" id="modal{{$regis->id}}" tabindex="-1" role="dialog" aria-labelledby="modalLabel{{$regis->id}}" aria-hidden="true">
-                                                <div class="modal-dialog" role="document">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title text-gray-800" id="modalLabel">Generar PDF</h5>
-                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
-                                                        </div>
-                                                        <form action="{{ route('pdf_auxiliar', $regis->id) }}" method="GET">
-                                                            <div class="modal-body">
-                                                                <div class="form-group">
-                                                                    <label for="fecha_inicio" class="text-gray-800">Fecha inicio:</label>
-                                                                    <input type="date" class="form-control" id="fecha_inicio" name="fecha_inicio" required>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label for="fecha_fin" class="text-gray-800">Fecha fin:</label>
-                                                                <input type="date" class="form-control" id="fecha_fin" name="fecha_fin" required>
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title text-gray-800" id="modalLabel">Generar PDF</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <form action="{{ route('reporte-especial', ['user_id' => $regis->id, 'fecha_inicio' => old('fecha_inicio'), 'fecha_fin' => old('fecha_fin')]) }}" method="GET">
+                                                        <div class="modal-body">
+                                                            <div class="form-group">
+                                                                <label for="fecha_inicio" class="text-gray-800">Fecha inicio:</label>
+                                                                <input type="date" class="form-control" id="fecha_inicio" name="fecha_inicio" required>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="fecha_fin" class="text-gray-800">Fecha fin:</label>
+                                                            <input type="date" class="form-control" id="fecha_fin" name="fecha_fin" required>
                                                             </div>
                                                         </div>
                                                         <div class="modal-footer">

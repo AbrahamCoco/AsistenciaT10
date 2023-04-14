@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Reporte Horas</title>
+    <title>Reporte Especial</title>
     <style>
         #header{
             position: fixed;
@@ -110,7 +110,7 @@
             @php
                 $totalMinutos = 0;
             @endphp
-            @foreach ($asistencia as $i => $asis)
+            @foreach ($asistencias as $i => $asis)
                 @php
                     $hora_inicio = $asis->hora_inicio ?? '';
                     $hora_fin = $asis->hora_fin ?? '';

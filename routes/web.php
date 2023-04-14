@@ -50,5 +50,5 @@ Route::middleware([
     //Rutas para generar pdf's
     Route::get('/contrato/{id}', [PdfController::class, 'contrato'])->name('contrato');
     Route::get('/reporte/{user_id}', [PdfController::class, 'reportehoras'])->name('reportehoras');
-    Route::get('/pdf_auxiliar/{id}', [PdfController::class, 'pdf_auxiliar'])->name('pdf_auxiliar');
+    Route::get('/reporte-especial/{user_id}', [PdfController::class, 'reporteEspecial'])->name('reporte-especial');
 });
