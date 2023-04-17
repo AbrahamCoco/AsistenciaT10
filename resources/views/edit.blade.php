@@ -36,9 +36,10 @@
                                 <div class="col-auto">
                                     <x-jet-label for="tipo" value="{{ __('Tipo')}}" />
                                     <select name="tipo" value="{{$registro->tipo}}">
-                                        <option value="Servicio Social">Servicio social</option>
-                                        <option value="Practicas Profesionales">Practicas profesionales</option>
-                                        <option value="Jovenes Construyendo el Futuro">Jovenes Construyendo el futuro</option>
+                                        <option value="Servicio Social">Servicio Social</option>
+                                        <option value="Practicas Profesionales">Practicas Profesionales</option>
+                                        <option value="Jovenes Construyendo el Futuro">Jovenes Construyendo el Futuro</option>
+                                        <option value="Externo">Externo</option>
                                     </select>
                                 </div>
                                 <div class="col-auto">
