@@ -6,6 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Reporte Especial</title>
     <style>
+
+        body{
+            margin-bottom: 28px;
+        }
+        
         #header{
             position: fixed;
             top: 0cm;
@@ -172,11 +177,13 @@
 
 
     <br>
-    <p style="text-align: center;">ATENTAMENTE</p>
-    <br>
-    <p style="text-align: center">____________________________________________</p>
-    <p style="text-align: center">Ing. Andres Gonzalez Paniagua</p>
-    <p style="text-align: center">Director</p>
+    <div class="firma">
+        <p style="text-align: center;">ATENTAMENTE</p>
+        <br>
+        <p style="text-align: center">____________________________________________</p>
+        <p style="text-align: center">Ing. Andres Gonzalez Paniagua</p>
+        <p style="text-align: center">Director</p>
+    </div>
 
     <div id="footer">
         <p class="textFooter">

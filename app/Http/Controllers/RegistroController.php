@@ -44,7 +44,7 @@ class RegistroController extends Controller
             $user->assignRole('PrestadorDeServicio');
         }
 
-        return redirect()->route('PrestadoresServicio')->with('message', 'Usuario agregado con éxito.');
+        return redirect()->route('PrestadoresServicio')->with('success', 'Usuario agregado con éxito.');
     }
 
     public function edit(User $registro)
@@ -81,7 +81,7 @@ class RegistroController extends Controller
 
         $registro->save();
 
-        return redirect()->route('PrestadoresServicio')->with('message', 'Usuario modificado con exito.');
+        return redirect()->route('PrestadoresServicio')->with('success', 'Usuario modificado con exito.');
     }
 
     public function delete($id)
@@ -89,7 +89,7 @@ class RegistroController extends Controller
         $user = User::find($id);
         $user->delete();
 
-        return redirect()->route('PrestadoresServicio')->with('message', 'Usuario eliminado con éxito.');
+        return redirect()->route('PrestadoresServicio')->with('success', 'Usuario eliminado con éxito.');
     }
 
     public function show()

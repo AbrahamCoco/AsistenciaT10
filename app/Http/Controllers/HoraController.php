@@ -110,7 +110,7 @@ class HoraController extends Controller
                 'horas_transcurridas' => $horas_transcurridas,
             ]);
 
-        return redirect()->route('insertar-horas')->with('message', 'Hora actualizada con éxito.');
+        return redirect()->route('insertar-horas')->with('success', 'Hora actualizada con éxito.');
     }
 
     public function insert(Request $request, $user_id, $tipo_id)
@@ -129,7 +129,7 @@ class HoraController extends Controller
             'tipo_id' => $tipo_id,
         ]);
 
-        return redirect()->route('insertar-horas')->with('message', 'Hora Agregada con exito.');
+        return redirect()->route('insertar-horas')->with('success', 'Hora agregada con exito.');
     }
 
     public function delete($id)
@@ -137,6 +137,6 @@ class HoraController extends Controller
         $hora = HoraRegis::find($id);
         $hora->delete();
 
-        return redirect()->route('insertar-horas')->with('message', 'Hora eliminado con éxito.');
+        return redirect()->route('insertar-horas')->with('success', 'Hora eliminado con éxito.');
     }
 }
