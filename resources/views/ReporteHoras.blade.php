@@ -6,6 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Reporte Horas</title>
     <style>
+        body{
+            margin-bottom: 28px;
+        }
         #header{
             position: fixed;
             top: 0cm;
@@ -149,7 +152,7 @@
         $horasRestantes++;
         $minutosRestantes = 0;
     }
-    $fechaTermino = date('d-m-Y', strtotime('+' . ceil($horasRestantes / 17.5) . ' weeks'));
+    $fechaTermino = date('d-m-Y', strtotime('+' . ceil($horasRestantes / 20) . ' weeks'));
     @endphp
 
     <br>
