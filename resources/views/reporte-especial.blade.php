@@ -6,9 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Reporte Especial</title>
     <style>
+
         body{
             margin-bottom: 28px;
         }
+        
         #header{
             position: fixed;
             top: 0cm;
