@@ -17,13 +17,42 @@ class RegistroController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => 'required|alpha',
+            'fom' => 'required|numeric|max:9999999999',
+            'telefono' => 'required|numeric|max:9999999999',
+            'ce' => 'required|alpha_num|max:18',
+            'curp' => 'required|alpha_num|max:18',
+            'email' => 'required|email',
+            'password' => 'required|min:8',
+        ], [
+            'name.required' => 'El campo Nombre es obligatorio.',
+            'name.alpha' => 'El campo Nombre solo debe contener letras.',
+            'fom.required' => 'El campo Folio o Matricula es obligatorio.',
+            'fom.numeric' => 'El campo Folio o Matricula solo debe contener números.',
+            'fom.max' => 'El campo Folio o Matricula no debe superar los 10 dígitos.',
+            'telefono.required' => 'El campo Teléfono es obligatorio.',
+            'telefono.numeric' => 'El campo Teléfono solo debe contener números.',
+            'telefono.max' => 'El campo Teléfono no debe superar los 10 dígitos.',
+            'ce.required' => 'El campo Clave de Elector es obligatorio.',
+            'ce.alpha_num' => 'El campo Clave de Elector solo debe contener caracteres alfanuméricos.',
+            'ce.max' => 'El campo Clave de Elector no debe superar los 18 caracteres.',
+            'curp.required' => 'El campo CURP es obligatorio.',
+            'curp.alpha_num' => 'El campo CURP solo debe contener caracteres alfanuméricos.',
+            'curp.max' => 'El campo CURP no debe superar los 18 caracteres.',
+            'email.required' => 'El campo Email es obligatorio.',
+            'email.email' => 'El campo Email debe ser una dirección de correo válida.',
+            'password.required' => 'El campo Contraseña es obligatorio.',
+            'password.min' => 'El campo Contraseña debe tener al menos 8 caracteres.',
+        ]);
+
         $user = User::create([
             'name' => $request->name,
             'fom' => $request->fom,
             'telefono' => $request->telefono,
             'fechaAgenda' => $request->fechaAgenda,
-            'ce' => $request->ce,
-            'curp' => $request->curp,
+            'ce' => strtoupper($request->ce),
+            'curp' => strtoupper($request->curp),
             'direccion' => $request->direccion,
             'email' => $request->email,
             'password' => Hash::make($request->password),
