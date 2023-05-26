@@ -18,7 +18,7 @@ class RegistroController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|alpha',
+            'name' => 'required|regex:/^[A-Za-z\s]+$/',
             'fom' => 'required|numeric|max:9999999999',
             'telefono' => 'required|numeric|max:9999999999',
             'ce' => 'required|alpha_num|max:18',
