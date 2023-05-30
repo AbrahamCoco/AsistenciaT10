@@ -39,18 +39,26 @@
                                 $hora_fin = $hora->hora_fin ?? '';
                                 $fecha = '';
                                 $horas = '';
+
                                 if ($hora_inicio && $hora_fin) {
-                                    $diff = date_diff(date_create($hora_inicio), date_create($hora_fin));
-                                    $horas = sprintf('%d horas y %d minutos', $diff->h, $diff->i);
-                                    $totalMinutos += $diff->h * 60 + $diff->i;
-                                    $fecha = DateTime::createFromFormat('Y-m-d H:i:s', $hora_inicio)->format('d-m-Y');
+                                    $inicio = new DateTime($hora_inicio);
+                                    $fin = new DateTime($hora_fin);
+                                    
+                                    $diferencia = $inicio->diff($fin);
+                                    $dias = $diferencia->d;
+                                    $horas = $dias * 24 + $diferencia->h;
+                                    
+                                    $horas_minutos = sprintf('%d horas y %d minutos', $horas, $diferencia->i);
+                                    $totalMinutos += $horas * 60 + $diferencia->i;
+                                    
+                                    $fecha = $inicio->format('d-m-Y');
                                 }
                             @endphp
                             <tr>
                                 <td class="text-gray-700">{{ $con }}</td>
                                 <td class="text-gray-700">{{ $hora_inicio_formateada = date("d/m/Y h:i A", strtotime($hora_inicio)); }}</td>
                                 <td class="text-gray-700">{{ $hora_fin_formateada = date("d/m/Y h:i A", strtotime($hora_fin)); }}</td>
-                                <td class="text-gray-700">{{ $horas }}</td>
+                                <td class="text-gray-700">{{ $horas_minutos }}</td>
                                 <td>
                                     <a href="{{ route('editar', ['id' => $user->id, 'tipo_id' => $tipo->id, 'hora_id' => $hora->id]) }}">
                                         <button type="button" class="btn btn-success">
