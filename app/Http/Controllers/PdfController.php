@@ -25,10 +25,15 @@ class PdfController extends Controller
     {
         $asistencia = HoraRegis::where('user_id', $user_id)->with('user')->get();
 
-        $data = compact('asistencia');
-        $pdf = PDF::loadView('ReporteHoras', $data);
+        if ($asistencia->isEmpty()) {
+            // Si no hay datos de asistencia, redirige a la vista con un mensaje de error
+            return redirect()->back()->with('error', 'No se encontraron datos de asistencia. No puedes descargar el reporte PDF');
+        } else {
+            $data = compact('asistencia');
+            $pdf = PDF::loadView('ReporteHoras', $data);
 
-        return $pdf->download('ReporteHoras.pdf');
+            return $pdf->download('ReporteHoras.pdf');
+        }
     }
 
     public function reporteEspecial(Request $request, $user_id)
@@ -42,10 +47,15 @@ class PdfController extends Controller
 
         $asistencia = HoraRegis::where('user_id', $user_id)->with('user')->get();
 
-        $data = compact('asistencias', 'asistencia');
+        // Validar si no hay datos en $asistencia y $asistencias
+        if ($asistencia->isEmpty() && $asistencias->isEmpty()) {
+            return redirect()->back()->with('error', 'No hay datos de asistencia disponibles.');
+        } else {
+            $data = compact('asistencias', 'asistencia');
 
-        $pdf = PDF::loadView('reporte-especial', $data);
+            $pdf = PDF::loadView('reporte-especial', $data);
 
-        return $pdf->download('ReporteEspecial.pdf');
+            return $pdf->download('ReporteEspecial.pdf');
+        }
     }
 }
