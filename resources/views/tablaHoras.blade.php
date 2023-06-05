@@ -37,6 +37,7 @@
                             @php
                                 $hora_inicio = $hora->hora_inicio ?? '';
                                 $hora_fin = $hora->hora_fin ?? '';
+                                $horas_minutos = '';
                                 $fecha = '';
                                 $horas = '';
 
