@@ -6,6 +6,7 @@ use App\Models\HoraRegis;
 use App\Models\Tipo;
 use App\Models\User;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Jenssegers\Date\Date;
 
@@ -38,8 +39,12 @@ class PdfController extends Controller
 
     public function reporteEspecial(Request $request, $user_id)
     {
-        $fecha_inicio = $request->input('fecha_inicio');
-        $fecha_fin = $request->input('fecha_fin');
+        $fecha_inicio = Carbon::createFromFormat('Y-m-d', $request->input('fecha_inicio'));
+        $fecha_fin = Carbon::createFromFormat('Y-m-d', $request->input('fecha_fin'));
+
+        if ($fecha_fin->lessThan($fecha_inicio)) {
+            return redirect()->back()->with('error', 'La Fecha/Hora de entrada no puede ser anterior a la Fecha/Hora de salida.');
+        }
 
         $asistencias = HoraRegis::where('user_id', $user_id)
             ->whereBetween('hora_inicio', [$fecha_inicio, $fecha_fin])
