@@ -135,7 +135,7 @@ class HoraController extends Controller
             'tipo_id' => $tipo_id,
         ]);
 
-        return redirect()->route('insertar-horas')->with('success', 'Hora agregada con éxito.');
+        return redirect()->route('insertar-horas')->with('message', 'Hora Agregada con exito.');
     }
 
     public function delete($id)
