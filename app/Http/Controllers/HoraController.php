@@ -118,6 +118,12 @@ class HoraController extends Controller
         $hora_inicio = Carbon::createFromFormat('Y-m-d\TH:i', $request->entrada);
         $hora_fin = Carbon::createFromFormat('Y-m-d\TH:i', $request->salida);
 
+        // Validar si hora_fin es anterior a hora_inicio
+        if ($hora_fin->lessThan($hora_inicio)) {
+            // Mostrar una alerta de error o realizar cualquier otra acción deseada
+            return redirect()->route('insertar-horas')->with('error', 'La Fecha/Hora de entrada no puede ser anterior a la Fecha/Hora de salida.');
+        }
+
         $horas_transcurridas = $hora_fin->diffInMinutes($hora_inicio) / 60;
 
         // Crear un nuevo registro en la base de datos
@@ -129,7 +135,7 @@ class HoraController extends Controller
             'tipo_id' => $tipo_id,
         ]);
 
-        return redirect()->route('insertar-horas')->with('success', 'Hora agregada con exito.');
+        return redirect()->route('insertar-horas')->with('success', 'Hora agregada con éxito.');
     }
 
     public function delete($id)
