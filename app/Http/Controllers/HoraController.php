@@ -136,7 +136,6 @@ class HoraController extends Controller
         ]);
 
         return redirect()->route('insertar-horas')->with('success', 'Hora agregada con éxito.');
-
     }
 
     public function delete($id)

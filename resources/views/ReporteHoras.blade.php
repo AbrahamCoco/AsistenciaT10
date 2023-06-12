@@ -121,8 +121,8 @@
                     $horas = '';
                     if ($hora_inicio && $hora_fin) {
                         $diff = date_diff(date_create($hora_inicio), date_create($hora_fin));
-                        $horas = sprintf('%d horas y %d minutos', $diff->h, $diff->i);
-                        $totalMinutos += $diff->h * 60 + $diff->i;
+                        $horas = sprintf('%d horas y %d minutos', ($diff->days * 24) + $diff->h, $diff->i); // Sumar los días transcurridos en horas
+                        $totalMinutos += ($diff->days * 24 * 60) + ($diff->h * 60) + $diff->i; // Sumar los minutos totales
                         $fecha = DateTime::createFromFormat('Y-m-d H:i:s', $hora_inicio)->format('d-m-Y');
                     }
                 @endphp
@@ -166,20 +166,30 @@
             <tr>
                 <td><strong>480 Horas</strong></td>
                 <td>{{ $horasCompletadas }} horas y {{ $minutosCompletados }} minutos</td>
-                <td>{{ $horasRestantes }} horas y {{ $minutosRestantes }} minutos</td>
+                @php
+                    $totalHorasRestantes = $horasRestantes + floor($minutosRestantes / 60);
+                    $totalMinutosRestantes = $minutosRestantes % 60;
+                @endphp
+
+                @if ($totalHorasRestantes <= 0)
+                    <td>Ha superado la cantidad total de horas a realizar de servicio</td>
+                @else
+                    <td>{{ $totalHorasRestantes }} horas y {{ $totalMinutosRestantes }} minutos</td>
+                @endif
             </tr>
         </tbody>
     </table>
 
     <p>Fecha proxima de termino: {{ $fechaTermino }}</p>
 
-
     <br>
-    <p style="text-align: center;">ATENTAMENTE</p>
-    <br>
-    <p style="text-align: center">____________________________________________</p>
-    <p style="text-align: center">Ing. Andres Gonzalez Paniagua</p>
-    <p style="text-align: center">Director</p>
+    <div class="firma">
+        <p style="text-align: center;">ATENTAMENTE</p>
+        <br>
+        <p style="text-align: center">____________________________________________</p>
+        <p style="text-align: center">Ing. Andres Gonzalez Paniagua</p>
+        <p style="text-align: center">Director</p>
+    </div>
 
     <div id="footer">
         <p class="textFooter">
