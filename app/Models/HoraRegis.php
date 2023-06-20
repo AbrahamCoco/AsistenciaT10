@@ -16,6 +16,8 @@ class HoraRegis extends Model
         'tipo_id',
     ];
 
+    protected $dates = ['hora_inicio', 'hora_fin'];
+
     /**
      * Get the user that owns the Hora
      *
