@@ -18,7 +18,7 @@ class RegistroController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|regex:/^[A-Za-z\s]+$/',
+            'name' => 'required|regex:/^[A-Za-z\sÁÉÍÓÚáéíóú]+$/',
             'fom' => 'required|numeric|max:9999999999',
             'telefono' => 'required|numeric|max:9999999999',
             'ce' => 'required|alpha_num|max:18',
@@ -27,7 +27,7 @@ class RegistroController extends Controller
             'password' => 'required|min:8',
         ], [
             'name.required' => 'El campo Nombre es obligatorio.',
-            'name.alpha' => 'El campo Nombre solo debe contener letras.',
+            'name.regex' => 'El campo Nombre solo debe contener letras.',
             'fom.required' => 'El campo Folio o Matricula es obligatorio.',
             'fom.numeric' => 'El campo Folio o Matricula solo debe contener números.',
             'fom.max' => 'El campo Folio o Matricula no debe superar los 10 dígitos.',

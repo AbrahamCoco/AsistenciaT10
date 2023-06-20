@@ -82,6 +82,16 @@ class HoraController extends Controller
             ->orderBy('hora_inicio', 'desc')
             ->get();
 
+        foreach ($horas as $hora) {
+            if ($hora->hora_fin === null) {
+                $hora->hora_fin = $hora->hora_inicio->copy()->addHours(4);
+                $hora->save();
+            } elseif ($hora->hora_fin->diffInMinutes($hora->hora_inicio) > 360) {
+                $hora->hora_fin = $hora->hora_inicio->copy()->addHours(5);
+                $hora->save();
+            }
+        }
+
         return view('tablaHoras', compact('user', 'tipo', 'horas'));
     }
 
