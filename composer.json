@@ -12,7 +12,7 @@
         "barryvdh/laravel-dompdf": "v3.0.0",
         "guzzlehttp/guzzle": "^7.9.2",
         "jenssegers/date": "v4.0.0",
-        "laravel/framework": "v11.31.0",
+        "laravel/framework": "v11.44.1",
         "laravel/jetstream": "v5.3.2",
         "laravel/sanctum": "v4.0.3",
         "laravel/tinker": "v2.10.0",
